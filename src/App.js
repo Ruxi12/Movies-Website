@@ -1,131 +1,85 @@
-import React, { useEffect, useState }  from 'react';
-import './index.css'
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import './index.css';
 import './App.css';
-import { Auth } from "./components/auth"
-import { db, auth, storage } from "./config/firebase" 
-import { getDocs, collection, addDoc, deleteDoc, updateDoc, doc } from 'firebase/firestore'
-import { async } from '@firebase/util';
-import { ref, uploadBytes} from 'firebase/storage'
+// import Auth from './components/Auth'; // Verify this path is correct
+import { Auth } from "./components/auth";
+import Register from './components/Register'; // Verify this path is correct
+import Login from './components/Login'; 
+import { db, auth, storage } from './config/firebase';
+import { getDocs, collection, addDoc, deleteDoc, doc, updateDoc } from 'firebase/firestore';
+import { ref, uploadBytes } from 'firebase/storage';
+
 function App() {
   const [movieList, setMovieList] = useState([]);
-
-  // NEW MOVIE STATES
   const [newMovieTitle, setNewMovieTitle] = useState("");
   const [newReleaseDate, setNewReleaseDate] = useState(0);
   const [isNewMovieOscar, setIsNewMovieOscar] = useState(false);
-
-  // update title state 
   const [updatedTitle, setUpdatedTitle] = useState("");
-  const moviesCollectionRef = collection(db, "movies")
-
-  // file upload state
   const [fileUpload, setFileUpload] = useState(null);
   
+  const moviesCollectionRef = collection(db, "movies");
+
+  // Moved getMovieList outside useEffect so it can be reused
   const getMovieList = async () => {
-    // read the data
-    // set the movie list
-    try{
+    try {
       const data = await getDocs(moviesCollectionRef);
-      console.log(data);
-      const filteredData = data.docs.map((doc) => ({
-        ...doc.data(),
-        id: doc.id,
-      }));
-      setMovieList(filteredData);
-      
-    }catch(err){
+      setMovieList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    } catch (err) {
       console.error(err);
-    };
     }
+  };
 
-const deleteMovie = async (id) => {
-    const movieDoc = doc(db, "movies", id);
-    await deleteDoc(movieDoc);
-}
-
-const updateMovieTitle = async (id) => {
-  const movieDoc = doc(db, "movies", id);
-  await updateDoc(movieDoc, { title: updatedTitle});
-}
-
-const uploadFile = async () => {
-  if (!fileUpload) return;
-  const filesFolderRef = ref(storage, `projectFiles/${fileUpload.name}`);
-  try{
-    await uploadBytes(filesFolderRef, fileUpload);
-  } catch (err) {
-    console.error(err);
-  }
-}
-
-  useEffect( () => {
-      getMovieList();
+  useEffect(() => {
+    getMovieList(); // Call getMovieList inside useEffect
   }, []);
 
+  const deleteMovie = async (id) => {
+    await deleteDoc(doc(db, "movies", id));
+    getMovieList(); // Now accessible
+  };
+
+  const updateMovieTitle = async (id) => {
+    await updateDoc(doc(db, "movies", id), { title: updatedTitle });
+    getMovieList(); // Now accessible
+  };
+
+  const uploadFile = async () => {
+    if (!fileUpload) return;
+    const fileRef = ref(storage, `movies/${fileUpload.name}`);
+    await uploadBytes(fileRef, fileUpload);
+    // Consider adding functionality to handle the response from uploadBytes
+  };
+
   const onSubmitMovie = async () => {
-    try{
-      await addDoc(moviesCollectionRef, {
-        title: newMovieTitle, 
-        releaseDate: newReleaseDate,
-        receivedAnOscar: isNewMovieOscar,
-        userId: auth?.currentUser?.uid,
-      })
-      getMovieList();
-    } catch(err){
-        console.error(err);
-      }
+    await addDoc(moviesCollectionRef, {
+      title: newMovieTitle,
+      releaseDate: newReleaseDate,
+      receivedAnOscar: isNewMovieOscar,
+      userId: auth.currentUser.uid,
+    });
+    getMovieList(); // Now accessible
   };
 
   return (
-    <div className="App">
-      <Auth />
-
-      <div>
+    <Router>
+      <div className="App">
+        <nav>
+          <Link to="/">Home</Link>
+          <Link to="/login">Login</Link>
+          <Link to="/register">Register</Link>
+        </nav>
         
-      <input
-          placeholder="Movie title..."
-          onChange={(e) => setNewMovieTitle(e.target.value)}
-        />
-    <input 
-      placeholder='Release Date...' 
-      type="number" 
-      onChange={(e) => setNewReleaseDate(Number(e.target.value))}
-    />
-    <input 
-      type={"checkbox"} 
-      checked={isNewMovieOscar}
-      onChange={(e) => setIsNewMovieOscar(e.target.checked)}
-    />
-    <label> Received an Oscar</label>
-    <button onClick={onSubmitMovie}> Submit Movie</button>
+        <Routes>
+          <Route path="/" element={<Auth />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+        </Routes>
 
+        {/* Additional UI components and functionality */}
+        {/* ... */}
       </div>
-      <div>
-        {movieList.map((movie) => (
-          <div>
-            <h1 style={{color: movie.receivedAnOscar ? "green" : "red"}} > 
-            {movie.title} 
-            </h1>
-            <p> Date: {movie.releaseDate}</p>
-            <button onClick={() => deleteMovie(movie.id)}> Delete Movie </button>
-            <input 
-              placeholder='new title...'
-              onChange={(e) => setUpdatedTitle(e.target.value)}
-              />
-            <button onClick={() => updateMovieTitle(movie.id)}> Update title</button>
-          </div>
-        ))}
-      </div>
-
-        <div>
-            <input 
-            type="file"
-            onChange={(e) => setFileUpload(e.target.files[0])}
-            />
-            <button onClick={uploadFile}> Upload File </button>
-        </div>
-
-    </div>
+    </Router>
   );
 }
 
