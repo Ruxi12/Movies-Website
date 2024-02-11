@@ -36,3 +36,28 @@
     transform: rotate(360deg);
   }
 }
+
+.form-input {
+  width: 100%; /* Mărește lățimea la 100% pentru a umple containerul */
+  padding: 15px; /* Mărește padding-ul pentru a mări înălțimea */
+  margin-bottom: 20px; /* Mărește spațiul între input-uri */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px; /* Mărește dimensiunea fontului pentru textul din input */
+}
+  
+  .form-button {
+    width: 100%; /* Asigură-te că butonul este la fel de lat ca input-urile */
+    padding: 15px; /* Mărește padding-ul pentru a face butonul mai înalt */
+    margin-bottom: 40px; /* Spațiu între buton și următorul element */
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    font-size: 16px; /* Mărește dimensiunea fontului pentru textul din buton */
+  }
+  
+  .form-button:hover {
+    background-color: #0056b3;
+  }

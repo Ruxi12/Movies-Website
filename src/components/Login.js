@@ -1,9 +1,12 @@
 // src/components/Login.js
 import React, { useState } from 'react';
+import InputField  from './InputField';
+import Button from './Button';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../config/firebase'; // Ajustează calea conform structurii tale de proiect
 import './Login.css'; // Asumăm că ai un fișier CSS pentru stilizare
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -20,7 +23,7 @@ const Login = () => {
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
         console.log("Autentificare reușită:", userCredential.user);
         setSuccess('Autentificare reușită!');
-        //navigate('/'); // Redirect la pagina principală sau dashboard
+        navigate('/'); // Redirect la pagina principală sau dashboard
       } catch (error) {
         setError(error.message);
       }
@@ -32,22 +35,26 @@ const Login = () => {
           <h2>Login</h2>
           {success && <div className="success-message">{success}</div>}
           {error && <div className="error-message">{error}</div>}
-          <input
+          <InputField
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Email"
             required
           />
-          <input
+          <InputField
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Password"
             required
           />
-          <button type="submit">Login</button>
+          <Button type="submit">Login</Button>
+          <div className="register-link"> 
+          Nu ai cont? <Link to="/register">Înregistrează-te</Link>
+          </div>
         </form>
+
       </div>
     );
   };

@@ -1,0 +1,131 @@
+/* src/components/FormStyles.css */
+/* Actualizează dimensiunile containerului, inputurilor, butonului și mărimea fonturilor */
+
+.add-film-container h2 {
+  color: #e7ebf0; /* Culoarea titlului */
+  margin-bottom: 60px; /* Mai mult spațiu sub titlu */
+  font-size: 40px; /* Mărimea fontului mai mare pentru titlu */
+}
+
+.form-input {
+  width: 95%; /* Lățime completă pentru a umple containerul */
+  padding: 20px; /* Padding mai mare pentru înălțimea inputului */
+  margin-bottom: 40px; /* Mai mult spațiu între inputuri */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 18px; /* Mărimea fontului mai mare pentru textul din input */
+}
+
+.form-button {
+  width: 100%; /* Lățime completă */
+  padding: 20px; /* Padding mai mare pentru înălțimea butonului */
+  margin-bottom: 25px; /* Mai mult spațiu sub buton */
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  font-size: 18px; /* Mărimea fontului mai mare pentru textul din buton */
+}
+
+.form-button:hover {
+  background-color: #0056b3;
+}
+
+  
+  .error-message, .success-message {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  .error-message {
+    color: #dc3545; /* Roșu pentru eroare */
+  }
+  
+  .success-message {
+    color: #28a745; /* Verde pentru succes */
+  }
+  
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem;
+    background-color: #0056b3; /* Nuanță mai albastră pentru navbar */
+    color: white;
+  }
+  
+  .nav-link, .nav-button {
+    color: white;
+    text-decoration: none;
+    margin-right: 1rem;
+  }
+  
+  .nav-button {
+    background-color: #007bff; /* Menținut culoarea originală pentru butoane */
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    color: white;
+  }
+  
+  .nav-button:hover {
+    background-color: #004085; /* O nuanță și mai închisă pentru hover */
+  }
+  
+  /* FormStyles.css - Adăugare stiluri suplimentare dacă este necesar */
+
+  .add-film-container {
+    max-width: 600px;
+    margin: auto;
+    padding: 50px; /* Mărește padding-ul pentru mai mult spațiu în interior */
+    background-color: #cfc2c2;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .input-large {
+    padding: 20px; /* Mărește padding-ul pentru un input mai înalt */
+    font-size: 20px; /* Mărește dimensiunea fontului pentru o mai bună lizibilitate */
+    margin-bottom: 25px; /* Mărește spațiul între input-uri */
+  }
+
+  .film-form {
+    display: flex;
+    flex-direction: column;
+    padding: 20px; /* Mărește padding-ul pentru un input mai înalt */
+    font-size: 40px; /* Mărește dimensiunea fontului pentru o mai bună lizibilitate */
+    margin-bottom: 25px; 
+  }
+  
+  .film-form .form-input,
+  .film-form .form-button {
+    margin-bottom: 60px; /* Mărește spațiul între input-uri și buton */
+  }
+  
+  .film-form .form-button {
+    background-color: #007bff; /* Buton albastru */
+    padding: 20px; /* Optional: Mărește padding-ul pentru a face butonul mai înalt */
+  }
+  
+  .film-form .form-button:hover {
+    background-color: #0056b3; /* Albastru mai închis la hover */
+  }
+  
+  .input-add-film {
+    width: 100%;
+    padding: 10px; /* Mărește padding-ul pentru un input mai înalt și mai lat */
+    margin-bottom: 20px; /* Spațiu între input-uri */
+    border: 2px solid #ccc; /* Poți ajusta grosimea border-ului dacă dorești */
+    border-radius: 5px; /* Colțuri ușor rotunjite */
+    font-size: 20px; /* Text mai mare în interiorul inputului */
+  }
+  .description-input-large {
+    width: 97%;
+    height: 90px; /* Mărește înălțimea pentru mai mult spațiu de text */
+    padding: 20px; /* Padding generos pentru confort la scriere */
+    font-size: 20px; /* Dimensiunea fontului pentru lizibilitate */
+    border: 1px solid #ccc; /* Stilul border-ului */
+    border-radius: 5px; /* Colțuri ușor rotunjite */
+    margin-bottom: 25px; /* Spațiu sub input */
+  }
+  
