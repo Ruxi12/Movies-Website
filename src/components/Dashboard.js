@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { getFirestore, collection, getDocs, doc, deleteDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom'; // Import pentru navigare
-import { useAuth } from '../context/AuthContext'; // Importați hook-ul de autentificare
-import './Dashboard.css'; // Asigurați-vă că legați fișierul CSS Dashboard
+import { useAuth } from '../context/AuthContext'; 
+import './Dashboard.css'; 
 
 const Dashboard = () => {
   const [movies, setMovies] = useState([]);
   const navigate = useNavigate(); // Hook pentru navigare
-  const { currentUser } = useAuth(); // Utilizați hook-ul de autentificare pentru a obține utilizatorul curent
+  const { currentUser } = useAuth(); 
 
   useEffect(() => {
     if (!currentUser) {
@@ -28,7 +28,7 @@ const Dashboard = () => {
 
   // Funcția pentru navigarea către pagina de editare
   const navigateToEditPage = (id) => {
-    navigate(`/edit-film/${id}`); // Presupunând că aveți o rută setată pentru editare
+    navigate(`/edit-film/${id}`);
   };
 
   // Funcția pentru ștergerea unui film

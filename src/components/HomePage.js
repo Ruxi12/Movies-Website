@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext'; // Ajustați calea către locația reală a AuthContext
+import { useAuth } from '../context/AuthContext'; 
 import './HomePage.css';
 const HomePage = () => {
   const { currentUser } = useAuth(); // Folosiți useAuth pentru a accesa currentUser

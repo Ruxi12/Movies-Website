@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 import InputField  from './InputField';
 import Button from './Button';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../config/firebase'; // Ajustează calea conform structurii tale de proiect
-import './Login.css'; // Asumăm că ai un fișier CSS pentru stilizare
+import { auth } from '../config/firebase'; 
+import './Login.css'; 
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 

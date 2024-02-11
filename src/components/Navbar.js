@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import Button from './UI/Button'; // Presupunând că ai componenta Button într-un subdirector UI
+import Button from './UI/Button'; 
 import '../components/FormStyles.css'
-import Dashboard from './Dashboard'; // Ajustați calea dacă este necesar
+import Dashboard from './Dashboard'; 
 
 const Navbar = () => {
   const { currentUser, logout } = useAuth();
