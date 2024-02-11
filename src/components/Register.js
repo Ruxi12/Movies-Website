@@ -1,10 +1,11 @@
 // Register.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { auth } from '../config/firebase'; // Ajustează calea conform structurii proiectului tău
-import './Register.css'; // Acesta asigură că stilurile sunt aplicate
+import { auth } from '../config/firebase'; 
+import './Register.css'; 
 import { createUserWithEmailAndPassword } from 'firebase/auth'; // Import corect pentru Firebase v9+
-
+import InputField  from './InputField';
+import Button from './Button';
 
 const Register = () => {
   const [email, setEmail] = useState('');

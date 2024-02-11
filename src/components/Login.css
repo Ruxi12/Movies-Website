@@ -1,4 +1,10 @@
 /* src/Login.css */
+body {
+  background-color: #1a1a1a; /* Presupunând că acesta este stilul de fundal de pe HomePage */
+  color: #ffffff;
+}
+
+
 .login-container {
     display: flex;
     justify-content: center;
@@ -16,6 +22,12 @@
     max-width: 400px;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .register-link {
+    margin-top: 20px;
+    color: #007bff;
   }
   
   .login-form h2 {
