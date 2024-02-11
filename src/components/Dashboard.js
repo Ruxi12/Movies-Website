@@ -28,7 +28,7 @@ const Dashboard = () => {
 
   // Funcția pentru navigarea către pagina de editare
   const navigateToEditPage = (id) => {
-    navigate(`/EditFilm/${id}`); // Presupunând că aveți o rută setată pentru editare
+    navigate(`/edit-film/${id}`); // Presupunând că aveți o rută setată pentru editare
   };
 
   // Funcția pentru ștergerea unui film
